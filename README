@@ -1,0 +1,17 @@
+# C++
+
+## build
+
+
+```shell
+
+$ docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) emscripten/emsdk emcc helloworld.cpp -o hell
+oworld.js
+
+```
+
+## run
+
+```shell
+$ node helloworld.js
+```
