@@ -6,7 +6,8 @@ file(GLOB all_SRCS
         "src/lopnames.h"
         "src/*.c"
         )
-list(FILTER all_SRCS EXCLUDE REGEX ".*lua?.c$")
+list(FILTER all_SRCS EXCLUDE REGEX ".*luac.c$")
+list(FILTER all_SRCS EXCLUDE REGEX ".*lua.c$")
 
 message(">>>>" ${all_SRCS})
 

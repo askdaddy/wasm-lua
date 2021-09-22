@@ -7,11 +7,15 @@
 <body>
 Check browser console.
 
+
 <script type="text/javascript">
     var Module = {
         onRuntimeInitialized: function () {
-            var instance = new Module.App();
-            instance.doString("print('hello lua!')")
+            var a = new Module.App();
+
+
+            a.doString("print('hello lua!')");
+
         }
     };
 </script>

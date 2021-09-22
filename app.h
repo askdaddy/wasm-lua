@@ -7,18 +7,23 @@
 
 #include <emscripten/html5.h>
 #include <emscripten/bind.h>
+
 namespace e = emscripten;
 
 class App {
 public:
     void doString(std::string codes);
 
+
+
+
 };
 
 EMSCRIPTEN_BINDINGS(EMTest) {
-        e::class_<App>("App")
-                .constructor()
-                .function("doString", std::function<void(App&,std::string)>(&App::doString));
+    e::class_<App>("App")
+            .constructor()
+            .function("doString", std::function<void(App &, std::string)>(&App::doString));
+
 }
 
 
