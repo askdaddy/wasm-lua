@@ -15,4 +15,3 @@ https://emscripten.org/docs/getting_started/index.html
 ## run
 
 open  build.emscripten/index.html  
-![run](./2021922.png)
