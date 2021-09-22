@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WASM</title>
+</head>
+<body>
+Check browser console.
+
+<script type="text/javascript">
+    var Module = {
+        onRuntimeInitialized: function () {
+            var instance = new Module.App();
+            instance.doString("print('hello lua!')")
+        }
+    };
+</script>
+<script type="text/javascript" src="wasm-lua.js"></script>
+</body>
+</html>

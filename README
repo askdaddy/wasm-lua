@@ -1,17 +1,17 @@
 # C++
 
+## dependence
+
+#### emsdk
+https://emscripten.org/docs/getting_started/index.html
+
 ## build
 
-
+#### Clion > Cmake Options
 ```shell
-
-$ docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) emscripten/emsdk emcc helloworld.cpp -o hell
-oworld.js
-
+-DCMAKE_TOOLCHAIN_FILE=/<path>/<to>/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
 ```
 
 ## run
 
-```shell
-$ node helloworld.js
-```
+open  build.emscripten/index.html
