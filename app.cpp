@@ -21,29 +21,28 @@ void print_error(lua_State *state) {
     lua_pop(state, 1);
 }
 
-void App::doString(std::string codes) {
-    lua_State* L = luaL_newstate();
+App::~App() {
+    if (L) lua_close(L);
+}
 
-    // Make standard libraries available in the Lua state
-    luaL_openlibs(L);
+std::string App::doString(std::string codes) {
+    if (!L) {
+        L = luaL_newstate();
+        // Make standard libraries available in the Lua state
+        luaL_openlibs(L);
+    }
 
     int result;
 
     // Load the program; this supports both source code and bytecode files.
-    puts(codes.c_str());
     result = luaL_dostring(L, codes.c_str());
-    if (result != LUA_OK) {
-        print_error(L);
-        return;
-    }
 
-    // Finally, execute the program by calling into it. You may have to change
-    // the lua_pcall arguments if you're not running vanilla Lua code.
-    result = lua_pcall(L, 0, LUA_MULTRET, 0);
-    if ( result != LUA_OK ) {
-    print_error(L);
-        return;
-    }
 
+    size_t len = 0;
+    const char* ret = lua_tolstring(L, lua_gettop(L), &len);
+    printf("%s\n",ret);
+    std::string s(ret);
+    return s;
 }
+
 

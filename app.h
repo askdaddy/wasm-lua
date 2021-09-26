@@ -12,17 +12,18 @@ namespace e = emscripten;
 
 class App {
 public:
-    void doString(std::string codes);
+   virtual ~App();
+public:
+    std::string doString(std::string codes);
 
-
-
-
+private:
+    lua_State *L;
 };
 
 EMSCRIPTEN_BINDINGS(EMTest) {
     e::class_<App>("App")
             .constructor()
-            .function("doString", std::function<void(App &, std::string)>(&App::doString));
+            .function("doString", std::function<std::string (App &, std::string)>(&App::doString));
 
 }
 

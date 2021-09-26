@@ -5,20 +5,66 @@
     <title>WASM</title>
 </head>
 <body>
-Check browser console.
-
 
 <script type="text/javascript">
+
+    function appendMsg(msg) {
+        var p = document.createElement('p');
+        p.innerHTML = msg;
+        document.getElementById("result").appendChild(p);
+    }
+
+    if (typeof console != "undefined") {
+        if (typeof console.log != 'undefined')
+            console.olog = console.log;
+        else
+            console.olog = function () {
+            };
+    }
+    console.log = function (message) {
+        console.olog(message);
+        appendMsg(`console > ${message}`);
+    };
+    console.error = console.debug = console.info = console.log;
+
     var Module = {
+        instance: undefined,
         onRuntimeInitialized: function () {
-            var a = new Module.App();
+            console.dir(Module.App);
+            instance = new Module.App;
 
 
-            a.doString("print('hello lua!')");
+            // instance.doString("print('hello lua!');  return 'very good!'; ");
 
+
+            // instance.delete();
+
+        },
+        doStr: function () {
+            var input = document.getElementById("edit").value;
+            if (instance) {
+                var ret = instance.doString(input);
+                appendMsg(`return > ${ret}`);
+            }
         }
     };
 </script>
 <script type="text/javascript" src="wasm-lua.js"></script>
+
+<div>
+    <div style="width: 400px; float: left">
+    <textarea id="edit" style="width: 400px; height: 480px;">
+function hello_lua()
+    print "Hello Lua!"
+end
+
+hello_lua()
+
+return 'very good!'
+    </textarea>
+        <input type="button" onclick="Module.doStr()" value="Run Lua!" style="width: 400px;">
+    </div>
+    <div id="result" style="width: 600px; float: right"></div>
+</div>
 </body>
 </html>
