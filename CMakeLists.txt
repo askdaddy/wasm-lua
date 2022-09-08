@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.10)
 cmake_policy(SET CMP0015 NEW)
 project (wasm-lua)
 
@@ -21,4 +21,4 @@ set(SOURCE_FILES app.cpp)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} lua)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-s DEMANGLE_SUPPORT=1 --bind")
+set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-s WASM=1 -s MODULARIZE=1 -s EXPORT_NAME=liblua -s ENVIRONMENT=web -s FILESYSTEM=0 -s DEMANGLE_SUPPORT=1 -s STANDALONE_WASM --bind --no-entry")
